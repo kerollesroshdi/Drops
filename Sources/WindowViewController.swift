@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 internal final class WindowViewController: UIViewController {
@@ -38,6 +38,7 @@ internal final class WindowViewController: UIViewController {
     return nil
   }
 
+    #if os(iOS)
   override var preferredStatusBarStyle: UIStatusBarStyle {
     // Workaround for https://github.com/omaralbeik/Drops/pull/22
     let app = UIApplication.shared
@@ -50,6 +51,7 @@ internal final class WindowViewController: UIViewController {
       ?? windowScene?.statusBarManager?.statusBarStyle
       ?? .default
   }
+    #endif
 
   func install() {
     window?.frame = UIScreen.main.bounds

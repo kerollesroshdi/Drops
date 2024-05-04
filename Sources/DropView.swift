@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 internal final class DropView: UIView {
@@ -29,7 +29,9 @@ internal final class DropView: UIView {
     self.drop = drop
     super.init(frame: .zero)
 
+    #if os(iOS)
     backgroundColor = .secondarySystemBackground
+    #endif
 
     addSubview(stackView)
 
