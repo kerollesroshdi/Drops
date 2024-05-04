@@ -114,11 +114,6 @@ internal final class DropView: UIView {
     subtitleLabel.numberOfLines = drop.subtitleNumberOfLines
     subtitleLabel.isHidden = drop.subtitle == nil
 
-    #if os(tvOS)
-    titleLabel.textColor = .label
-    subtitleLabel.textColor = .secondaryLabel
-    #endif
-
     imageView.image = drop.icon
     imageView.isHidden = drop.icon == nil
 
@@ -148,7 +143,11 @@ internal final class DropView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
+    #if os(tvOS)
+    label.textColor = .black
+    #else
     label.textColor = .label
+    #endif
     label.font = UIFont.preferredFont(forTextStyle: .subheadline).bold
     label.adjustsFontForContentSizeCategory = true
     label.adjustsFontSizeToFitWidth = true
@@ -159,7 +158,11 @@ internal final class DropView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
-    label.textColor = UIAccessibility.isDarkerSystemColorsEnabled ? .label : .secondaryLabel
+    #if os(tvOS)
+      label.textColor = .darkGray
+    #else
+      label.textColor = UIAccessibility.isDarkerSystemColorsEnabled ? .label : .secondaryLabel
+    #endif
     label.font = UIFont.preferredFont(forTextStyle: .subheadline)
     label.adjustsFontForContentSizeCategory = true
     label.adjustsFontSizeToFitWidth = true
