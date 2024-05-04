@@ -29,10 +29,10 @@ internal final class DropView: UIView {
     self.drop = drop
     super.init(frame: .zero)
 
-    #if os(iOS)
-    backgroundColor = .secondarySystemBackground
-    #elseif os(tvOS)
+    #if os(tvOS)
     backgroundColor = .white
+    #else
+    backgroundColor = .secondarySystemBackground
     #endif
 
     addSubview(stackView)
@@ -59,10 +59,17 @@ internal final class DropView: UIView {
   func createLayoutConstraints(for drop: Drop) -> [NSLayoutConstraint] {
     var constraints: [NSLayoutConstraint] = []
 
+    #if os(tvOS)
     constraints += [
-      imageView.heightAnchor.constraint(equalToConstant: 25),
-      imageView.widthAnchor.constraint(equalToConstant: 25)
+    imageView.heightAnchor.constraint(equalToConstant: 40),
+    imageView.widthAnchor.constraint(equalToConstant: 40)
     ]
+    #else
+    constraints += [
+    imageView.heightAnchor.constraint(equalToConstant: 25),
+    imageView.widthAnchor.constraint(equalToConstant: 25)
+    ]
+    #endif
 
     constraints += [
       button.heightAnchor.constraint(equalToConstant: 35),
