@@ -114,6 +114,11 @@ internal final class DropView: UIView {
     subtitleLabel.numberOfLines = drop.subtitleNumberOfLines
     subtitleLabel.isHidden = drop.subtitle == nil
 
+    #if os(tvOS)
+    titleLabel.textColor = .label
+    subtitleLabel.textColor = .secondaryLabel
+    #endif
+
     imageView.image = drop.icon
     imageView.isHidden = drop.icon == nil
 
