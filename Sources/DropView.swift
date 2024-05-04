@@ -31,6 +31,8 @@ internal final class DropView: UIView {
 
     #if os(iOS)
     backgroundColor = .secondarySystemBackground
+    #elseif os(tvOS)
+    backgroundColor = .white
     #endif
 
     addSubview(stackView)
