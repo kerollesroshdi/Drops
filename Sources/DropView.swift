@@ -84,16 +84,14 @@ internal final class DropView: UIView {
     #endif
 
 
-
+    #if os(tvOS)
+    var insets = UIEdgeInsets(top: 7.5, left: 20, bottom: 7.5, right: 20)
+    #else
     var insets = UIEdgeInsets(top: 7.5, left: 12.5, bottom: 7.5, right: 12.5)
+    #endif
 
     if drop.icon == nil {
-      #if os(tvOS)
-      insets.left = 55
-      #else
       insets.left = 40
-      #endif
-
     }
 
     if drop.action?.icon == nil {
