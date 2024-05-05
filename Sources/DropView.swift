@@ -61,25 +61,39 @@ internal final class DropView: UIView {
 
     #if os(tvOS)
     constraints += [
-    imageView.heightAnchor.constraint(equalToConstant: 40),
-    imageView.widthAnchor.constraint(equalToConstant: 40)
+      imageView.heightAnchor.constraint(equalToConstant: 40),
+      imageView.widthAnchor.constraint(equalToConstant: 40)
     ]
     #else
     constraints += [
-    imageView.heightAnchor.constraint(equalToConstant: 25),
-    imageView.widthAnchor.constraint(equalToConstant: 25)
+      imageView.heightAnchor.constraint(equalToConstant: 25),
+      imageView.widthAnchor.constraint(equalToConstant: 25)
     ]
     #endif
 
+    #if os(tvOS)
+    constraints += [
+      button.heightAnchor.constraint(equalToConstant: 50),
+      button.widthAnchor.constraint(equalToConstant: 50)
+    ]
+    #else
     constraints += [
       button.heightAnchor.constraint(equalToConstant: 35),
       button.widthAnchor.constraint(equalToConstant: 35)
     ]
+    #endif
+
+
 
     var insets = UIEdgeInsets(top: 7.5, left: 12.5, bottom: 7.5, right: 12.5)
 
     if drop.icon == nil {
+      #if os(tvOS)
+      insets.left = 55
+      #else
       insets.left = 40
+      #endif
+
     }
 
     if drop.action?.icon == nil {
